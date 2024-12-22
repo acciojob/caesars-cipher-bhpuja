@@ -1,14 +1,40 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caesar's Cipher (ROT13)</title>
+</head>
+<body>
+  <h1>Caesar's Cipher - ROT13 Decoder</h1>
+  <p>Enter a ROT13 encoded string below to decode it:</p>
 
-<html>
-  <head>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
+  <!-- Input for encoded text -->
+  <input type="text" id="encodedText" placeholder="Enter ROT13 text" />
+  <button onclick="decodeROT13()">Decode</button>
 
-  <body>
-    <!-- the entire body must be written by student -->
-    <h1>Caeser's Cipher</h1>
+  <!-- Output for decoded text -->
+  <p><strong>Decoded Text:</strong> <span id="decodedText"></span></p>
 
-    <script type="text/javascript" src="./script.js"></script>
-  </body>
+  <script>
+    // ROT13 decoding function
+    function rot13(str) {
+      return str.replace(/[A-Z]/g, (char) => {
+        const charCode = char.charCodeAt(0);
+        return String.fromCharCode(((charCode - 65 + 13) % 26) + 65);
+      });
+    }
+
+    // Function to handle user input and display decoded text
+    function decodeROT13() {
+      const encodedText = document.getElementById("encodedText").value;
+      const decodedText = rot13(encodedText);
+      document.getElementById("decodedText").textContent = decodedText;
+    }
+  </script>
+</body>
 </html>
+
+
+
+
